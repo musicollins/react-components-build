@@ -1,4 +1,5 @@
 import { data } from "../SpeakerData";
+import Sessions from './components/Sessions'
 
 const index = () => {
   return (
@@ -49,14 +50,8 @@ const index = () => {
                 </div>
                 {/*Speaker Demographics*/}
               </div>
-              {/*Speaker Session*/}
-              <div className="sessionBox card h-250">
-                <span className="session w-100">
-                  {sessions[0].title}{" "}
-                  <strong>Room: {sessions[0].room.name}</strong>
-                </span>
-              </div>
-              {/*Speaker Session*/}
+              <Sessions sessions={sessions}/>
+
             </div>
           );
         })}
