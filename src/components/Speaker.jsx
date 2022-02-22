@@ -2,7 +2,7 @@ import SpeakerImage from "./SpeakerImage";
 import SpeakerDemographics from "./SpeakerDemographics";
 import Sessions from './Sessions'
 
-function Speaker({ speaker }) {
+function Speaker({ speaker, sessionState }) {
     const { sessions, id, first, last } = speaker;
     return (
       <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
@@ -10,7 +10,7 @@ function Speaker({ speaker }) {
           <SpeakerImage id={id} first={first} last={last} />
           <SpeakerDemographics {...speaker} />
         </div>
-        <Sessions sessions={sessions} />
+        {sessionState && <Sessions sessions={sessions} />}
       </div>
     );
   }
