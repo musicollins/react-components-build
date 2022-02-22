@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Header() {
+export default function Header({theme}) {
   return (
     <div className="padT4 padB4">
       <div className="container mobile-container">
@@ -8,10 +8,10 @@ export default function Header() {
           <div>
             <img alt="SVCC Home Page" src="/images/SVCCLogo.png" />
           </div>
-          <div className="light">
+          <div className={theme ==="light" ? "":"text-info"}>
             <h4 className="header-title">Silicon Valley Code Camp</h4>
           </div>
-          <div className="text-dark">
+          <div className={theme === "dark" ? "text-light":"text-dark"}>
             Hello Mr. Smith &nbsp;&nbsp;
             <span>
               <a href="#">sign-out</a>
