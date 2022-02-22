@@ -2,7 +2,7 @@ import Speakers from '../src/components/Speakers';
 
 const index = () => {
   return (
-    <Speakers/>
+    <Speakers />
   );
 };
 
