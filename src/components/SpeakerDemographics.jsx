@@ -1,11 +1,17 @@
-function SpeakerDemographics({first, last, bio, company, twitterHandle, favorite}) {
-    return (
+import { useState } from "react";
+import Favorite from "./Favorite";
+function SpeakerDemographics({first, last, bio, company, twitterHandle, favorite, handleClickFavorite}) {
+
+  
+  return (
       <div className="speaker-info">
         <div className="d-flex justify-content-between mb-3">
           <h3 className="text-truncate w-200">
             {first} {last}
           </h3>
         </div>
+        <Favorite favorite={favorite} toggleIsFavourite={handleClickFavorite}/>
+
         <div>
           <p className="card-description">
             {bio}
