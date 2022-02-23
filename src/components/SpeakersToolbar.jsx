@@ -1,9 +1,6 @@
 export default function SpeakersToolbar(props) {
   //Destructure props
-
   const {sessionState, theme, toggleSessions, setTheme} = props;
-  //const [showSessions, setShowSessions] = useState(true);
-  //const [theme, setTheme] = useState("light")
 
   function handleShowSessions(e) {
     //Changes the component state when the checkbox input is toggled
