@@ -8,7 +8,7 @@ export default function Header({theme}) {
           <div>
             <img alt="SVCC Home Page" src="/images/SVCCLogo.png" />
           </div>
-          <div className={theme ==="light" ? "":"text-info"}>
+          <div className={theme ==="light" ? " ": "text-info"}>
             <h4 className="header-title">Silicon Valley Code Camp</h4>
           </div>
           <div className={theme === "dark" ? "text-light":"text-dark"}>

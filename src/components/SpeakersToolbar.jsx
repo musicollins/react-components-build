@@ -2,23 +2,12 @@ export default function SpeakersToolbar(props) {
   //Destructure props
   const {sessionState, theme, toggleSessions, setTheme} = props;
 
-  function handleShowSessions(e) {
-    //Changes the component state when the checkbox input is toggled
-    //Toggles the checked attribute of the input (type=>checkbox)
-    setShowSessions(e.target.checked);
-  }
-  function handleShowTheme(e) {
-    //Changes the component state when the dropdown label tag
-    console.log(e.target.value)
-    setTheme(e.target.value);
-  }
-
   return (
     <section className="toolbar dark-theme-header">
       <div className="container">
         <div className="justify-content-between">
           <ul className="toolrow d-flex flex-column flex-lg-row">
-            <li className="d-flex flex-column flex-md-row">
+            <li className="d-flex align-items-center flex-column flex-md-row">
               <b>Show Sessions&nbsp;&nbsp;</b>
               <label className="fav">
                 <input
@@ -29,7 +18,7 @@ export default function SpeakersToolbar(props) {
                 <span className="switch"></span>
               </label>
             </li>
-            <li className="d-flex flex-column flex-md-row ml-sm-5 ml-0">
+            <li className="d-flex align-items-center flex-column flex-md-row ml-sm-5 ml-0 ">
               <strong>Theme</strong>
               <label className="dropdown">
                 <select className="form-control theme" value={theme} onChange={(e) => setTheme(e.target.value)}>
@@ -37,6 +26,10 @@ export default function SpeakersToolbar(props) {
                   <option value="dark">Dark</option>
                 </select>
               </label>
+            </li>
+            <li className="d-flex align-items-center flex-column flex-md-row ml-sm-5 ml-0 ">
+              <i className="fa fa-trash orange"></i>
+              <button>Reset Entries</button>
             </li>
           </ul>
         </div>
