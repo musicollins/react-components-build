@@ -1,40 +1,50 @@
-import React, { useState } from 'react'
-import Speaker from './Speaker'
-import {data} from '../../SpeakerData'
+import useRequestDelay, {REQUEST_STATUS}  from "../hooks/useRequestDelay";
+import Speaker from "./Speaker";
+import ReactPlaceholder from "react-placeholder";
+import initialData from '../../SpeakerData'
 
-export default function SpeakersList({sessionState}) {
+export default function SpeakersList({ sessionState, theme }) {
 
-  const [speakersData, setSpeakersData] = useState(data);
+  const {
+    data, requestStatus, error, updateRecord
+  } = useRequestDelay(initialData, 2000);
 
-  const handleClickFavorite = (id) =>{
-    console.log("CLICKED!")
-    const speakerToBeUpdated = speakersData.find(speaker => speaker.id === id);
-
-    const updatedSpeaker = {
-      ...speakerToBeUpdated,
-      favorite: !speakerToBeUpdated.favorite
-    }
-
-    const updatedData = speakersData.map(speaker => {
-      return speaker.id === id ? updatedSpeaker : speaker
-    })
-    setSpeakersData(updatedData)
-  }
   
+
+  if (requestStatus === REQUEST_STATUS.FAILURE)
+    return (
+      <h1 className={theme === "dark" ? "text-danger" : "text-dark"}>
+        {error}
+      </h1>
+    );
+
+
   return (
-    <div className="container speakers-list">
-    <div className="row">
-      {speakersData.map(function (speaker) {
-        return (
-        <Speaker 
-          key={speaker.id} 
-          speaker={speaker}
-          sessionState={sessionState} 
-          handleClickFavorite={
-            () => handleClickFavorite(speaker.id)
-          }/>);
-      })}
-    </div>
-  </div>
-  )
+    <ReactPlaceholder
+      type="media"
+      rows={10}
+      className="speakerslist-placeholder"
+      ready={requestStatus === REQUEST_STATUS.SUCCESS}
+    >
+      <div className="container speakers-list">
+        <div className="row">
+          {data.map(function (speaker) {
+            return (
+              <Speaker
+                key={speaker.id}
+                speaker={speaker}
+                sessionState={sessionState}
+                handleClickFavorite={() => {
+                  updateRecord({
+                    ...speaker,
+                    favorite: !speaker.favorite,
+                  })
+                }}
+              />
+            );
+          })}
+        </div>
+      </div>
+    </ReactPlaceholder>
+  );
 }

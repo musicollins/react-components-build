@@ -13,7 +13,7 @@ export default function Speakers({theme, setTheme}) {
             theme={theme}
             setTheme={setTheme}
             />
-          <SpeakersList sessionState={showSessions} />
+          <SpeakersList theme={theme} sessionState={showSessions} />
       </div>
     
   )

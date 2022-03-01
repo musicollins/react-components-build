@@ -1,4 +1,4 @@
-export const data = [
+const initialData = [
   {
     id: "1269",
     first: "Arun",
@@ -1086,3 +1086,6 @@ export const data = [
     ],
   },
 ];
+
+
+export default initialData;

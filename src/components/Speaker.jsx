@@ -5,6 +5,7 @@ import Sessions from "./Sessions";
 function App({ speaker, sessionState, handleClickFavorite }) {
   const { sessions, id, first, last} = speaker;
 
+  
 
   return (
     <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">

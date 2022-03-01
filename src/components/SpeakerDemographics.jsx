@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Favorite from "./Favorite";
 function SpeakerDemographics({first, last, bio, company, twitterHandle, favorite, handleClickFavorite}) {
 
