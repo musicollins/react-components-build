@@ -8,8 +8,6 @@ export const REQUEST_STATUS = {
 
 function useRequestDelay(initialData, delayTime = 1000) {
   const [data, setData] = useState(initialData);
-  // const [isLoading, setIsLoading] = useState(true);
-  // const [hasErrored, setHasErrored] = useState(false);
   const [ requestStatus, setRequestStatus ] = useState(REQUEST_STATUS.LOADING)
   const [error, setError] = useState("");
 
@@ -53,7 +51,7 @@ function useRequestDelay(initialData, delayTime = 1000) {
     setData(updatedData);
   };
 
-  const updateRecord = (updatedRecord) => {
+  const updateRecord = (updatedRecord, doneCallBack) => {
 
     const updatedData = data.map((speaker) => {
       return speaker.id === updatedRecord.id ? updatedRecord : speaker;
@@ -63,6 +61,7 @@ function useRequestDelay(initialData, delayTime = 1000) {
       try {
         await delay(2000)
         setData(updatedData)
+        doneCallBack()
       } catch (error) {
         console.error("There's been a server ERROR!")
         setError(error.message)
