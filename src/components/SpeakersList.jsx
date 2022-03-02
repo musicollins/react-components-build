@@ -1,15 +1,13 @@
-import useRequestDelay, {REQUEST_STATUS}  from "../hooks/useRequestDelay";
+import useRequestDelay, { REQUEST_STATUS } from "../hooks/useRequestDelay";
 import Speaker from "./Speaker";
 import ReactPlaceholder from "react-placeholder";
-import initialData from '../../SpeakerData'
+import initialData from "../../SpeakerData";
 
 export default function SpeakersList({ sessionState, theme }) {
-
-  const {
-    data, requestStatus, error, updateRecord
-  } = useRequestDelay(initialData, 2000);
-
-  
+  const { data, requestStatus, error, updateRecord } = useRequestDelay(
+    initialData,
+    2000
+  );
 
   if (requestStatus === REQUEST_STATUS.FAILURE)
     return (
@@ -17,7 +15,6 @@ export default function SpeakersList({ sessionState, theme }) {
         {error}
       </h1>
     );
-
 
   return (
     <ReactPlaceholder
@@ -34,11 +31,14 @@ export default function SpeakersList({ sessionState, theme }) {
                 key={speaker.id}
                 speaker={speaker}
                 sessionState={sessionState}
-                handleClickFavorite={() => {
-                  updateRecord({
-                    ...speaker,
-                    favorite: !speaker.favorite,
-                  })
+                handleClickFavorite={(doneCallBack) => {
+                  updateRecord(
+                    //UPDATED RECORD (as function parameter + callback)
+                    {
+                      ...speaker,
+                      favorite: !speaker.favorite,
+                    }, doneCallBack
+                  );
                 }}
               />
             );
